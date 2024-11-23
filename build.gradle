@@ -25,6 +25,7 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	implementation 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 	implementation 'jakarta.annotation:jakarta.annotation-api:2.1.1'
+	runtimeOnly 'mysql:mysql-connector-java:8.0.32'
 }
 
 tasks.named('test') {
