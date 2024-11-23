@@ -14,13 +14,10 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
-                        "https://35-sopkathon-web-web3.vercel.app/",
-                        "http://localhost:5173"
-                        )
-                .allowedHeaders("*")
-                .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS")
-                .allowCredentials(true)
-                .maxAge(3600);
+                        "*"
+                )
+                .allowedMethods("*");
+
     }
 
 }
