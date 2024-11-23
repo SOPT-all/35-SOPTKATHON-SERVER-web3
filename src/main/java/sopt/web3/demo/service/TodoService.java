@@ -3,8 +3,7 @@ package sopt.web3.demo.service;
 import org.springframework.stereotype.Component;
 
 import org.springframework.transaction.annotation.Transactional;
-import sopt.web3.demo.dto.request.CreateTodoRequest;
-import sopt.web3.demo.dto.request.UpdateTodoRequest;
+import sopt.web3.demo.dto.request.*;
 import sopt.web3.demo.dto.response.TodoListTodayGetResponse;
 import sopt.web3.demo.entity.Member;
 import sopt.web3.demo.entity.Todo;
@@ -56,10 +55,30 @@ public class TodoService {
     }
 
     @Transactional
-    public void updateTodo(long memberId, UpdateTodoRequest request) {
+    public void updateTodoCheck(long memberId, UpdateCheckTodoRequest request) {
         for(Long id: request.todoIds()){
             Todo todo = todoRepository.findById(id).get();
             todo.updateState();
+        }
+    }
+
+    @Transactional
+    public void updateTodo(long memberId, UpdateCheckTodoRequest request) {
+        for(Long id: request.todoIds()){
+            Todo todo = todoRepository.findById(id).get();
+            todo.updateState();
+        }
+    }
+
+    @Transactional
+    public void updateTodo(long memberId, LocalDate date, UpdateTodoRequest request) {
+        for (DeleteTodo deleteTodo: request.deleteTodos()){
+            todoRepository.deleteById(deleteTodo.id());
+        }
+        Member member = memberRepository.findById(memberId).orElseThrow(()->new RuntimeException("노 멤버"));
+        TodoList todoList = todoListRepository.findByMemberAndDate(member, date).orElseThrow(()->new RuntimeException("노 투데이"));
+        for (AddTodo addTodo:request.addTodos()){
+            todoRepository.save(Todo.of(addTodo.contents(), todoList));
         }
     }
 }

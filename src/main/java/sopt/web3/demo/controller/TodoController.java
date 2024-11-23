@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sopt.web3.demo.common.dto.SuccessResponse;
 import sopt.web3.demo.dto.request.CreateTodoRequest;
+import sopt.web3.demo.dto.request.UpdateCheckTodoRequest;
 import sopt.web3.demo.dto.request.UpdateTodoRequest;
 import sopt.web3.demo.dto.response.TodoListTodayGetResponse;
 import sopt.web3.demo.service.TodoService;
@@ -44,11 +45,21 @@ public class TodoController {
     }
 
     @PatchMapping("/todo/check")
+    public ResponseEntity<SuccessResponse<Void>> updateTodoCheck(
+            @RequestHeader long memberId,
+            @RequestBody UpdateCheckTodoRequest updateCheckTodoRequest
+    ) {
+        todoService.updateTodoCheck(memberId, updateCheckTodoRequest);
+        return ResponseEntity.ok(success(GET_LEVEL.getMessage(), null));
+    }
+
+    @PatchMapping("/todo")
     public ResponseEntity<SuccessResponse<Void>> updateTodo(
             @RequestHeader long memberId,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             @RequestBody UpdateTodoRequest updateTodoRequest
     ) {
-        todoService.updateTodo(memberId,updateTodoRequest);
+        todoService.updateTodo(memberId,date, updateTodoRequest);
         return ResponseEntity.ok(success(GET_LEVEL.getMessage(), null));
     }
 }
