@@ -24,14 +24,14 @@ public class TodoListController {
         this.todoListService = todoListService;
     }
 
-    @GetMapping("/member/todolist")
+    @GetMapping("/todolist")
     public ResponseEntity<SuccessResponse<TodoListsGetResponse>> getTodoLists(
             @RequestHeader long memberId
     ) {
         return ResponseEntity.ok(success(GET_TODOLISTS.getMessage(), todoListService.getTodoLists(memberId)));
     }
 
-    @GetMapping("/member/todolist/all-percentage")
+    @GetMapping("/todolist/all-percentage")
     public ResponseEntity<SuccessResponse<AllPercentageResponse>> getAllPercentage(
             @RequestHeader long memberId
     ) {
