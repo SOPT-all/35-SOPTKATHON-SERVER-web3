@@ -13,6 +13,7 @@ import sopt.web3.demo.repository.TodoListRepository;
 import sopt.web3.demo.repository.TodoRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,11 +33,14 @@ public class TodoService {
     public TodoListTodayGetResponse getTodayTodo(long memberId, LocalDate date) {
         Member member = memberRepository.findById(memberId).orElseThrow(() -> new RuntimeException("노 멤버"));
         Optional<TodoList> todoList = todoListRepository.findByMemberAndDate(member, date);
-        List<Todo> todos = null;
+        List<Todo> todos = new ArrayList<>();
+        boolean completed = false;
         if (todoList.isPresent()){
-            todos = todoRepository.findAllByTodoList(todoList.get());
+            List<Todo> allByTodoList = todoRepository.findAllByTodoList(todoList.get());
+            todos.addAll(allByTodoList);
+            completed = todoList.get().isSubmitted();
         }
-        return TodoListTodayGetResponse.from(todos);
+        return TodoListTodayGetResponse.from(todos,completed);
     }
 
     public void createTodo(long memberId, LocalDate date, CreateTodoRequest request) {
@@ -44,30 +48,30 @@ public class TodoService {
         Optional<TodoList> todoListOptional = todoListRepository.findByMemberAndDate(member, date);
         List<Todo> todos = null;
         TodoList todoList = null;
-        if (todoListOptional.isEmpty()){
-            todoList = todoListRepository.save(new TodoList(date, null, null, null, false,member));
-        }else {
-            todoList = todoListOptional.get();
-        }
+        todoList = todoListOptional.orElseGet(() ->
+                todoListRepository.save(new TodoList(date, null, null, request.todos().size(), false, member)));
         for (String content : request.todos()) {
             todoRepository.save(Todo.of(content, todoList));
         }
     }
 
     @Transactional
-    public void updateTodoCheck(long memberId, UpdateCheckTodoRequest request) {
+    public void completeTodo(long memberId, UpdateCheckTodoRequest request,LocalDate date) {
+        Member member = memberRepository.findById(memberId).orElseThrow(() -> new RuntimeException("노 멤버"));
+        TodoList todoList = todoListRepository.findByMemberAndDate(member, date).orElseThrow(() -> new RuntimeException("노 투두"));
         for(Long id: request.todoIds()){
             Todo todo = todoRepository.findById(id).get();
             todo.updateState();
         }
-    }
-
-    @Transactional
-    public void updateTodo(long memberId, UpdateCheckTodoRequest request) {
-        for(Long id: request.todoIds()){
-            Todo todo = todoRepository.findById(id).get();
-            todo.updateState();
+        todoList.setNumCompleted(request.todoIds().size());
+        if(request.todoIds().size() == todoList.getNumAll()){
+            member.increaseLevel();
         }
+        if((double) request.todoIds().size() /todoList.getNumAll() <= 0.5) {
+            member.decreaseLevel();
+        }
+        todoList.setLevel(member.getLevel());
+        todoList.setSubmitted(true);
     }
 
     @Transactional
@@ -80,5 +84,7 @@ public class TodoService {
         for (AddTodo addTodo:request.addTodos()){
             todoRepository.save(Todo.of(addTodo.contents(), todoList));
         }
+        todoList.increaseNumAll(request.addTodos().size());
+        todoList.decreaseNumAll(request.deleteTodos().size());
     }
 }

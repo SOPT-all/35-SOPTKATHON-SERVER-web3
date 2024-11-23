@@ -33,4 +33,12 @@ public class Member {
     public int getLevel() {
         return level;
     }
+
+    public void increaseLevel(){
+        this.level += 1;
+    }
+
+    public void decreaseLevel(){
+        this.level -= 1;
+    }
 }

@@ -5,11 +5,12 @@ import sopt.web3.demo.entity.Todo;
 import java.util.List;
 
 public record TodoListTodayGetResponse(
+        boolean completed,
         List<TodoTodayGetResponse> todoTodayGetResponseList
 ){
 
-    public static TodoListTodayGetResponse from(final List<Todo> todos){
-        return new TodoListTodayGetResponse(todos.stream().map(TodoTodayGetResponse::from).toList());
+    public static TodoListTodayGetResponse from(final List<Todo> todos,final boolean completed){
+        return new TodoListTodayGetResponse(completed,todos.stream().map(TodoTodayGetResponse::from).toList());
     }
 
     public record TodoTodayGetResponse(

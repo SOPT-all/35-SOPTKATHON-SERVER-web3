@@ -28,6 +28,10 @@ public class TodoList {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    public void setSubmitted(boolean submitted) {
+        isSubmitted = submitted;
+    }
+
     public TodoList(LocalDate date, Integer level, Integer numCompleted, Integer numAll, boolean isSubmitted, Member member) {
         this.date = date;
         this.level = level;
@@ -60,11 +64,27 @@ public class TodoList {
         return numAll;
     }
 
+    public void setNumCompleted(Integer numCompleted) {
+        this.numCompleted = numCompleted;
+    }
+
     public boolean isSubmitted() {
         return isSubmitted;
     }
 
     public Member getMember() {
         return member;
+    }
+
+    public void increaseNumAll(int num){
+        this.numAll += num;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public void decreaseNumAll(int num){
+        this.numAll -= num;
     }
 }

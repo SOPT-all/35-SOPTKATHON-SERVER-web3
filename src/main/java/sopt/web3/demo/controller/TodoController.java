@@ -45,11 +45,12 @@ public class TodoController {
     }
 
     @PatchMapping("/todo/check")
-    public ResponseEntity<SuccessResponse<Void>> updateTodoCheck(
+    public ResponseEntity<SuccessResponse<Void>> completeTodo(
             @RequestHeader long memberId,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             @RequestBody UpdateCheckTodoRequest updateCheckTodoRequest
     ) {
-        todoService.updateTodoCheck(memberId, updateCheckTodoRequest);
+        todoService.completeTodo(memberId, updateCheckTodoRequest,date);
         return ResponseEntity.ok(success(GET_LEVEL.getMessage(), null));
     }
 

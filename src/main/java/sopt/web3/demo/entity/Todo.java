@@ -8,16 +8,19 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private final String content;
+    private  String content;
     private boolean complete;
 
     @ManyToOne
-    private final TodoList todoList;
+    private  TodoList todoList;
 
     private Todo(String content, boolean complete, TodoList todoList) {
         this.content = content;
         this.complete = complete;
         this.todoList = todoList;
+    }
+
+    public Todo() {
     }
 
     public static Todo of(String content, TodoList todoList) {
