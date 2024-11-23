@@ -9,7 +9,7 @@ public class Todo {
     private Long id;
 
     private final String content;
-    private final boolean complete;
+    private boolean complete;
 
     @ManyToOne
     private final TodoList todoList;
@@ -20,6 +20,9 @@ public class Todo {
         this.todoList = todoList;
     }
 
+    public static Todo of(String content, TodoList todoList) {
+        return new Todo(content, false, todoList);
+    }
 
 
 
@@ -37,5 +40,8 @@ public class Todo {
 
     public TodoList getTodoList() {
         return todoList;
+    }
+    public void updateState(){
+        this.complete = true;
     }
 }

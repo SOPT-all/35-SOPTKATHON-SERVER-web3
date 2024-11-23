@@ -1,9 +1,10 @@
 package sopt.web3.demo.entity;
 
 import jakarta.persistence.*;
-import sopt.web3.demo.domain.Member;
+
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 public class TodoList {
@@ -12,7 +13,7 @@ public class TodoList {
     private Long id;
 
     @Column
-    private Date date;
+    private LocalDate date;
 
     @Column
     private int level;
@@ -28,7 +29,7 @@ public class TodoList {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    private sopt.web3.demo.domain.Member member;
+    private Member member;
 
     public TodoList(Date date, int level, int num_completed, int num_all, boolean isSubmitted, Member member) {
         this.date = date;
