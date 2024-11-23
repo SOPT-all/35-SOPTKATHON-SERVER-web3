@@ -27,7 +27,7 @@ public class TodoController {
 
     @GetMapping("/todo")
     public ResponseEntity<SuccessResponse<TodoListTodayGetResponse>> getTodayTodo(
-            @RequestHeader long memberId,
+            @RequestHeader("Member-Id") long memberId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date
     ) {
         TodoListTodayGetResponse response = todoService.getTodayTodo(memberId,date);
