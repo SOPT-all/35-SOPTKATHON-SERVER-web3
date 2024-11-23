@@ -24,7 +24,7 @@ public class MemberController {
 
     @GetMapping("/member/level")
     public ResponseEntity<SuccessResponse<Long>> getInterests(
-            @RequestHeader long memberId
+            @RequestHeader("Member-Id") long memberId
     ) {
         long level = memberService.getLevel(memberId);
         return ResponseEntity.ok(success(GET_LEVEL.getMessage(), level));

@@ -26,14 +26,14 @@ public class TodoListController {
 
     @GetMapping("/todolist")
     public ResponseEntity<SuccessResponse<TodoListsGetResponse>> getTodoLists(
-            @RequestHeader long memberId
+            @RequestHeader("Member-Id") long memberId
     ) {
         return ResponseEntity.ok(success(GET_TODOLISTS.getMessage(), todoListService.getTodoLists(memberId)));
     }
 
     @GetMapping("/todolist/all-percentage")
     public ResponseEntity<SuccessResponse<AllPercentageResponse>> getAllPercentage(
-            @RequestHeader long memberId
+            @RequestHeader("Member-Id") long memberId
     ) {
         return ResponseEntity.ok(success(GET_ALL_PERCENTAGE.getMessage(), todoListService.getAllPercentage(memberId)));
     }

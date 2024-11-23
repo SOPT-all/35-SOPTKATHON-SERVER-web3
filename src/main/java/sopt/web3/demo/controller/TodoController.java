@@ -36,7 +36,7 @@ public class TodoController {
 
     @PostMapping("/todo")
     public ResponseEntity<SuccessResponse<Void>> createTodo(
-            @RequestHeader long memberId,
+            @RequestHeader("Member-Id") long memberId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             @RequestBody CreateTodoRequest createTodoRequest
     ) {
@@ -46,7 +46,7 @@ public class TodoController {
 
     @PatchMapping("/todo/check")
     public ResponseEntity<SuccessResponse<Void>> completeTodo(
-            @RequestHeader long memberId,
+            @RequestHeader("Member-Id") long memberId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             @RequestBody UpdateCheckTodoRequest updateCheckTodoRequest
     ) {
@@ -56,7 +56,7 @@ public class TodoController {
 
     @PatchMapping("/todo")
     public ResponseEntity<SuccessResponse<Void>> updateTodo(
-            @RequestHeader long memberId,
+            @RequestHeader("Member-Id") long memberId,
             @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date,
             @RequestBody UpdateTodoRequest updateTodoRequest
     ) {
