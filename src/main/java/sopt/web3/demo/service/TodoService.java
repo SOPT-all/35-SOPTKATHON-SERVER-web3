@@ -1,10 +1,11 @@
 package sopt.web3.demo.service;
 
 import org.springframework.stereotype.Component;
-import sopt.web3.demo.domain.Todo;
-import sopt.web3.demo.domain.TodoList;
+
 import sopt.web3.demo.dto.request.CreateTodoRequest;
 import sopt.web3.demo.dto.response.TodoListTodayGetResponse;
+import sopt.web3.demo.entity.Todo;
+import sopt.web3.demo.entity.TodoList;
 import sopt.web3.demo.repository.TodoListRepository;
 import sopt.web3.demo.repository.TodoRepository;
 

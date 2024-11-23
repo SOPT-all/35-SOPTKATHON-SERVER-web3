@@ -1,6 +1,6 @@
 package sopt.web3.demo.dto.response;
 
-import sopt.web3.demo.domain.Todo;
+import sopt.web3.demo.entity.Todo;
 
 import java.util.List;
 

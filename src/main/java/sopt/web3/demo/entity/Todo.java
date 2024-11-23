@@ -1,9 +1,6 @@
-package sopt.web3.demo.domain;
+package sopt.web3.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Todo {
@@ -14,6 +11,7 @@ public class Todo {
     private final String content;
     private final boolean complete;
 
+    @ManyToOne
     private final TodoList todoList;
 
     private Todo(String content, boolean complete, TodoList todoList) {
@@ -22,7 +20,6 @@ public class Todo {
         this.todoList = todoList;
     }
 
-    public static Todo
 
 
 
