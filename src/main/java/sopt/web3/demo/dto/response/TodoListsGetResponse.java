@@ -9,7 +9,7 @@ import java.util.List;
 
 public record TodoListsGetResponse(List<TodoListResponse> todoLists) {
 
-    public record TodoListResponse(LocalDate date, int level, int num_completed, int num_all) {
+    public record TodoListResponse(LocalDate date, Integer level, Integer num_completed, Integer num_all) {
 
     }
 

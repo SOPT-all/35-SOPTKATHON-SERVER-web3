@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface TodoListRepository extends JpaRepository<TodoList, Long> {
-    List<TodoList> findByMemberId(Long memberId);
+    List<TodoList> findByMember(Member member);
 
     Optional<TodoList> findByMemberAndDate(Member member, LocalDate date);
 }

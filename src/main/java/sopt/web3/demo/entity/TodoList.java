@@ -13,13 +13,13 @@ public class TodoList {
     private LocalDate date;
 
     @Column
-    private int level;
+    private Integer level;
 
     @Column
-    private int numCompleted;
+    private Integer numCompleted;
 
     @Column
-    private int numAll;
+    private Integer numAll;
 
     @Column
     private boolean isSubmitted;
@@ -48,15 +48,15 @@ public class TodoList {
         return date;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public int getNumCompleted() {
+    public Integer getNumCompleted() {
         return numCompleted;
     }
 
-    public int getNumAll() {
+    public Integer getNumAll() {
         return numAll;
     }
 
