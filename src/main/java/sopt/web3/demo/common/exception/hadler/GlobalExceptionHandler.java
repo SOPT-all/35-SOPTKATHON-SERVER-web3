@@ -3,9 +3,9 @@ package sopt.web3.demo.common.exception.hadler;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import sopt.market.common.dto.BaseResponse;
-import sopt.market.common.dto.ErrorResponse;
-import sopt.market.common.exception.errorcode.ErrorCode;
+import sopt.web3.demo.common.dto.BaseResponse;
+import sopt.web3.demo.common.dto.ErrorResponse;
+import sopt.web3.demo.common.exception.errorcode.ErrorCode;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

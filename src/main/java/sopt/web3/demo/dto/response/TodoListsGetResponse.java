@@ -3,12 +3,13 @@ package sopt.web3.demo.dto.response;
 import sopt.web3.demo.entity.TodoList;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 
 public record TodoListsGetResponse(List<TodoListResponse> todoLists) {
 
-    public record TodoListResponse(Date date, int level, int num_completed, int num_all) {
+    public record TodoListResponse(LocalDate date, int level, int num_completed, int num_all) {
 
     }
 
@@ -16,7 +17,7 @@ public record TodoListsGetResponse(List<TodoListResponse> todoLists) {
 
         List<TodoListResponse> diaryResponseList = todoLists.stream()
                 .map(todoList -> new TodoListResponse(
-                        todoList.getDate(),
+                        todoList.getLocalDate(),
                         todoList.getLevel(),
                         todoList.getNumCompleted(),
                         todoList.getNumAll()))

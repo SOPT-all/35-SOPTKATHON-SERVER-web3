@@ -46,7 +46,7 @@ public class TodoService {
         List<Todo> todos = null;
         TodoList todoList = null;
         if (todoListOptional.isEmpty()){
-            todoList = todoListRepository.save(TodoList.of(date, null, null, null, false));
+            todoList = todoListRepository.save(new TodoList(date, null, null, null, false,member));
         }else {
             todoList = todoListOptional.get();
         }

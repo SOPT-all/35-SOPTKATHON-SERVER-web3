@@ -1,9 +1,6 @@
 package sopt.web3.demo.entity;
 
 import jakarta.persistence.*;
-
-
-import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
@@ -19,27 +16,26 @@ public class TodoList {
     private int level;
 
     @Column
-    private int num_completed;
+    private int numCompleted;
 
     @Column
-    private int num_all;
+    private int numAll;
 
     @Column
     private boolean isSubmitted;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
-    public TodoList(Date date, int level, int num_completed, int num_all, boolean isSubmitted, Member member) {
+    public TodoList(LocalDate date, Integer level, Integer numCompleted, Integer numAll, boolean isSubmitted, Member member) {
         this.date = date;
         this.level = level;
-        this.num_completed = num_completed;
-        this.num_all = num_all;
+        this.numCompleted = numCompleted;
+        this.numAll = numAll;
         this.isSubmitted = isSubmitted;
         this.member = member;
     }
-
 
     public TodoList() {
     }
@@ -48,7 +44,7 @@ public class TodoList {
         return id;
     }
 
-    public Date getDate() {
+    public LocalDate getLocalDate() {
         return date;
     }
 
@@ -56,12 +52,12 @@ public class TodoList {
         return level;
     }
 
-    public int getNum_completed() {
-        return num_completed;
+    public int getNumCompleted() {
+        return numCompleted;
     }
 
-    public int getNum_all() {
-        return num_all;
+    public int getNumAll() {
+        return numAll;
     }
 
     public boolean isSubmitted() {
