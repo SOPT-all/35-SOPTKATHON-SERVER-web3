@@ -17,19 +17,6 @@ import java.util.List;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins(
-                        "http://localhost:5173"
-                        )
-                .allowedHeaders("*")
-                .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS")
-                .allowCredentials(true)
-                .maxAge(3600);
-    }
-
     @Component
     public static class CorsFilter implements Filter {
 
