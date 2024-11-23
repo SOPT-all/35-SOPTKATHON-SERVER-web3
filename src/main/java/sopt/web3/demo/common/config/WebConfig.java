@@ -14,8 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins(
-                        "https://35-sopkathon-web-web3.vercel.app/",
-                        "https://localhost:5173"
+                        "*"
                         )
                 .allowedHeaders("*")
                 .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS")
