@@ -3,7 +3,7 @@ package sopt.web3.demo.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class UserEntity {
+public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
