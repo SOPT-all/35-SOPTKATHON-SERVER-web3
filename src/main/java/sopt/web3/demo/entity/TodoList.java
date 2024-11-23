@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.sql.Date;
 
 @Entity
-public class TodoListEntity {
+public class TodoList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,16 +17,37 @@ public class TodoListEntity {
     private int level;
 
     @Column
-    private int num_completed;
+    private int numCompleted;
 
     @Column
-    private int num_all;
+    private int numAll;
 
     @Column
     private boolean isSubmitted;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private MemberEntity member;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
+    public Long getId() {
+        return id;
+    }
+    public Date getDate() {
+        return date;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public int getNumCompleted() {
+        return numCompleted;
+    }
+
+    public int getNumAll() {
+        return numAll;
+    }
+    public boolean getIsSubmitted() {
+        return isSubmitted;
+    }
 }
