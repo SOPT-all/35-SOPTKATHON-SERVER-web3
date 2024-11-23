@@ -8,7 +8,9 @@ import java.util.List;
 
 public record TodoListsGetResponse(List<TodoListResponse> todoLists) {
 
-    public record TodoListResponse(Date date, int level, int num_completed, int num_all) { }
+    public record TodoListResponse(Date date, int level, int num_completed, int num_all) {
+
+    }
 
     public static TodoListsGetResponse of(List<TodoList> todoLists) {
 

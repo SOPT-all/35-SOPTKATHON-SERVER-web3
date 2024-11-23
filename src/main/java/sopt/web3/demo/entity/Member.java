@@ -1,4 +1,4 @@
-package sopt.web3.demo.domain;
+package sopt.web3.demo.entity;
 
 import jakarta.persistence.*;
 
